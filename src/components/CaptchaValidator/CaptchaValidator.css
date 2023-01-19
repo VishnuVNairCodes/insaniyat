@@ -1,0 +1,4 @@
+.captcha-validator-wrapper {
+  display: flex;
+  flex-direction: column;
+}
