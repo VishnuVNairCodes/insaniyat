@@ -1,5 +1,5 @@
 import "./App.css";
-import { CaptchaGenerator } from "./components/CaptchaGenerator";
+import { Signup } from "./components/SignUp";
 
 function App() {
   return (
@@ -7,12 +7,12 @@ function App() {
       <header className="header">
         <div className="header-brand">Insaniyat</div>
         <button className="header-toggle-theme-btn btn-icon">
-          <i class="fa-regular fa-sun"></i>
-          {/* <i class="fa-regular fa-moon"></i> */}
+          <i className="fa-regular fa-sun"></i>
+          {/* <i className="fa-regular fa-moon"></i> */}
         </button>
       </header>
       <main className="main">
-        <h1>Main</h1>
+        <Signup />
       </main>
     </div>
   );
