@@ -1,0 +1,10 @@
+.captcha-generator-container {
+  display: flex;
+  align-items: center;
+  padding: var(--sp-tens2);
+  gap: var(--sp-fractions3);
+}
+
+.captcha-wrapper {
+  flex-grow: 1;
+}

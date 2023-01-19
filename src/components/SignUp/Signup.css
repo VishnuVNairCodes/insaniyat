@@ -1,0 +1,15 @@
+.signup-container {
+  background-color: var(--clr-white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-tens2);
+  width: 38rem;
+}
+
+.signup-heading {
+  text-align: center;
+}
+
+.signup-container .btn-primary {
+  margin-top: var(--sp-tens2);
+}
