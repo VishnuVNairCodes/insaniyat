@@ -25,10 +25,10 @@ function drawText(context, text, x, y) {
 const drawCaptcha = (canvasRef) => {
   const canvas = canvasRef.current;
   const ctx = canvas.getContext("2d");
-  ctx.font = "20px Arial";
+  ctx.font = "22px Arial";
   ctx.fillStyle = "black";
-  const x = 150;
-  const y = 25;
+  const x = 100;
+  const y = 40;
   drawText(ctx, getCaptchaString(), x, y);
   addNoise(ctx, canvas.width, canvas.height);
 };
