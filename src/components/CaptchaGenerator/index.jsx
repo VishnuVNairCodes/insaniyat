@@ -1,17 +1,20 @@
-import { useRef } from "react";
-import { drawCaptcha } from "../../utils";
+import { drawCaptcha, getCaptchaString } from "../../utils";
 import { Captcha } from "../Captcha";
 import "./CaptchaGenerator.css";
 
-const CaptchaGenerator = () => {
-  const canvasRef = useRef(null);
+const CaptchaGenerator = ({ canvasRef, captchaStringRef }) => {
+  const handleCaptchaRefresh = () => {
+    captchaStringRef.current = getCaptchaString();
+    drawCaptcha(canvasRef, captchaStringRef.current);
+  };
   return (
     <div className="captcha-generator-container">
       <div className="captcha-wrapper">
         <Captcha canvasRef={canvasRef} />
       </div>
       <button
-        onClick={() => drawCaptcha(canvasRef)}
+        type="button"
+        onClick={handleCaptchaRefresh}
         className="btn-icon btn-refresh-captcha"
       >
         <i className="fa-solid fa-rotate-right"></i>

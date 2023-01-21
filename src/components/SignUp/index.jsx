@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { drawCaptcha, getCaptchaString } from "../../utils";
 import { CaptchaValidator } from "../CaptchaValidator";
 import { TextBox } from "../TextBox";
 import "./Signup.css";
@@ -34,14 +35,27 @@ const Signup = () => {
   const [errorMessage, setErrorMessage] = useState("-");
   const isValidationSuccess = errorMessage === "-" ? true : false;
 
-  const validateSignup = (inputValuesObj) => {
+  const captchaStringRef = useRef(null);
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    captchaStringRef.current = getCaptchaString();
+    drawCaptcha(canvasRef, captchaStringRef.current);
+  }, [canvasRef]);
+
+  const validateSignup = (e, inputValuesObj) => {
+    e.preventDefault();
+    setErrorMessage("-");
     const { userName, email, password, confirmPassword, captcha } =
       inputValuesObj;
     if (userName && email && password && confirmPassword && captcha) {
       if (password !== confirmPassword) {
         setErrorMessage(errorMessages.passwordsMismatch);
-      } else if (1) {
+      } else if (inputValues.captcha !== captchaStringRef.current) {
         setErrorMessage(errorMessages.wrongCaptcha);
+        setInputValues((prev) => ({ ...prev, captcha: "" }));
+        captchaStringRef.current = getCaptchaString();
+        drawCaptcha(canvasRef, captchaStringRef.current);
       }
     } else {
       setErrorMessage(errorMessages.incompleteForm);
@@ -49,7 +63,10 @@ const Signup = () => {
   };
 
   return (
-    <article className="signup-container">
+    <form
+      onSubmit={(e) => validateSignup(e, inputValues)}
+      className="signup-container"
+    >
       <h3 className="signup-heading">Signup</h3>
       {inputFields.map((inputField) => {
         const { inputName, inputPlaceholder, inputType } = inputField;
@@ -67,6 +84,8 @@ const Signup = () => {
       <CaptchaValidator
         inputValue={inputValues.captcha}
         setInputValues={setInputValues}
+        canvasRef={canvasRef}
+        captchaStringRef={captchaStringRef}
       />
       <p className={`signup-msg-error ${isValidationSuccess && "hide"}`}>
         {errorMessage}
@@ -74,7 +93,7 @@ const Signup = () => {
       <button type="submit" className="btn btn-primary">
         Signup
       </button>
-    </article>
+    </form>
   );
 };
 

@@ -1,6 +1,6 @@
 import { getCaptchaString } from ".";
 
-function addNoise(context, width, height) {
+const addNoise = (context, width, height) => {
   context.fillStyle = "black";
   for (let i = 0; i < (width * height) / 50; i++) {
     context.save();
@@ -11,18 +11,18 @@ function addNoise(context, width, height) {
     context.fill();
     context.restore();
   }
-}
+};
 
-function drawText(context, text, x, y) {
+const drawText = (context, text, x, y) => {
   context.save();
   context.translate(x, y);
   // rotate by a random angle between -15 and 15 degrees
   context.rotate(Math.random() * 0.3 - 0.15);
   context.fillText(text, 0, 0);
   context.restore();
-}
+};
 
-const drawCaptcha = (canvasRef) => {
+const drawCaptcha = (canvasRef, captchaString) => {
   const canvas = canvasRef.current;
   const ctx = canvas.getContext("2d");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -30,7 +30,7 @@ const drawCaptcha = (canvasRef) => {
   ctx.fillStyle = "black";
   const x = 100;
   const y = 40;
-  drawText(ctx, getCaptchaString(), x, y);
+  drawText(ctx, captchaString, x, y);
   addNoise(ctx, canvas.width, canvas.height);
 };
 
