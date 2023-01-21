@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: var(--sp-tens2);
   width: 38rem;
+  transition: background-color 0.3s;
 }
 
 .signup-container.dark {

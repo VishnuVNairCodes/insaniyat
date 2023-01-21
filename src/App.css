@@ -21,6 +21,7 @@ body,
 .app {
   display: flex;
   flex-direction: column;
+  transition: color 0.2s, background-color 0.3s;
 }
 
 .app.dark {
