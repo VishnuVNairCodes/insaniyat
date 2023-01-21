@@ -11,5 +11,14 @@
 }
 
 .signup-container .btn-primary {
-  margin-top: var(--sp-tens2);
+  margin-top: var(--sp-fractions2);
+}
+
+.signup-msg-error {
+  text-align: center;
+  color: var(--clr-danger);
+}
+
+.hide {
+  opacity: 0;
 }
