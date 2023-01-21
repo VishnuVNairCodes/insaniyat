@@ -25,6 +25,29 @@ const Signup = () => {
     confirmPassword: "",
     captcha: "",
   });
+
+  const errorMessages = {
+    incompleteForm: "Please fill in all fields",
+    passwordsMismatch: "Passwords didn't match. Try Again",
+    wrongCaptcha: "Invalid Captcha",
+  };
+  const [errorMessage, setErrorMessage] = useState("-");
+  const isValidationSuccess = errorMessage === "-" ? true : false;
+
+  const validateSignup = (inputValuesObj) => {
+    const { userName, email, password, confirmPassword, captcha } =
+      inputValuesObj;
+    if (userName && email && password && confirmPassword && captcha) {
+      if (password !== confirmPassword) {
+        setErrorMessage(errorMessages.passwordsMismatch);
+      } else if (1) {
+        setErrorMessage(errorMessages.wrongCaptcha);
+      }
+    } else {
+      setErrorMessage(errorMessages.incompleteForm);
+    }
+  };
+
   return (
     <article className="signup-container">
       <h3 className="signup-heading">Signup</h3>
@@ -45,6 +68,9 @@ const Signup = () => {
         inputValue={inputValues.captcha}
         setInputValues={setInputValues}
       />
+      <p className={`signup-msg-error ${isValidationSuccess && "hide"}`}>
+        {errorMessage}
+      </p>
       <button type="submit" className="btn btn-primary">
         Signup
       </button>
