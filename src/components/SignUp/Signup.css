@@ -11,5 +11,24 @@
 }
 
 .signup-container .btn-primary {
-  margin-top: var(--sp-tens2);
+  margin-top: var(--sp-fractions2);
+}
+
+.signup-msg-error {
+  text-align: center;
+  color: var(--clr-danger);
+}
+
+.hide {
+  opacity: 0;
+}
+
+.user-greeting-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--f-fiftys);
+  font-weight: var(--fwt-bold);
+  line-height: var(--sp-eightys);
 }
