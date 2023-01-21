@@ -33,6 +33,7 @@ body,
 
 .header-brand {
   font-family: "Monoton", cursive;
+  color: var(--clr-black);
   font-weight: bold;
   font-size: var(--f-twentys2);
   letter-spacing: var(--sp-fractions1);
