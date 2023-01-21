@@ -27,11 +27,6 @@ const Signup = () => {
     captcha: "",
   });
 
-  const errorMessages = {
-    incompleteForm: "Please fill in all fields",
-    passwordsMismatch: "Passwords didn't match. Try Again",
-    wrongCaptcha: "Invalid Captcha",
-  };
   const [errorMessage, setErrorMessage] = useState("-");
   let [isValidationSuccess, setIsValidationSuccess] = useState(false);
 
@@ -42,6 +37,12 @@ const Signup = () => {
     captchaStringRef.current = getCaptchaString();
     drawCaptcha(canvasRef, captchaStringRef.current);
   }, [canvasRef]);
+
+  const errorMessages = {
+    incompleteForm: "Please fill in all fields",
+    passwordsMismatch: "Passwords didn't match. Try Again",
+    wrongCaptcha: "Invalid Captcha",
+  };
 
   const validateSignup = (e, inputValuesObj) => {
     e.preventDefault();
