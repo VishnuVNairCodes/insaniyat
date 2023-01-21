@@ -1,10 +1,8 @@
-import { useEffect, useRef } from "react";
+import { useEffect} from "react";
 import { drawCaptcha } from "../../utils";
 import "./Captcha.css";
 
-const Captcha = () => {
-  const canvasRef = useRef(null);
-
+const Captcha = ({ canvasRef }) => {
   useEffect(() => {
     drawCaptcha(canvasRef);
   });
