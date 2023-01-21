@@ -1,5 +1,3 @@
-import { getCaptchaString } from ".";
-
 const addNoise = (context, width, height) => {
   context.fillStyle = "black";
   for (let i = 0; i < (width * height) / 50; i++) {
