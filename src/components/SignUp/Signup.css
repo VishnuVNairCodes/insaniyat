@@ -6,6 +6,10 @@
   width: 38rem;
 }
 
+.signup-container.dark {
+  background-color: var(--clr-black);
+}
+
 .signup-heading {
   text-align: center;
 }

@@ -1,14 +1,22 @@
-import "./App.css";
 import { Signup } from "./components/SignUp";
+import { useTheme } from "./contexts/theme-context";
+import "./App.css";
 
 function App() {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <div className="app">
+    <div className={`app ${theme}`}>
       <header className="header">
         <div className="header-brand">Insaniyat</div>
-        <button className="header-toggle-theme-btn btn-icon">
-          <i className="fa-regular fa-sun"></i>
-          {/* <i className="fa-regular fa-moon"></i> */}
+        <button
+          onClick={toggleTheme}
+          className="header-toggle-theme-btn btn-icon"
+        >
+          {theme === "light" ? (
+            <i className="fa-regular fa-sun"></i>
+          ) : (
+            <i className="fa-regular fa-moon"></i>
+          )}
         </button>
       </header>
       <main className="main">

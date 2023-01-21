@@ -1,1 +1,4 @@
-
+.captcha-canvas {
+  background-color: var(--clr-white);
+  border-radius: var(--br-1);
+}

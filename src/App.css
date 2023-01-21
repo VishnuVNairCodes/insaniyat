@@ -8,6 +8,7 @@
 :root {
   --clr-primary: #20c997;
   --clr-primary-hover: #199d76;
+  --clr-black: #212121;
 }
 
 html,
@@ -20,6 +21,11 @@ body,
 .app {
   display: flex;
   flex-direction: column;
+}
+
+.app.dark {
+  color: var(--clr-white);
+  background-color: var(--clr-black);
 }
 
 /* || HEADER || */
