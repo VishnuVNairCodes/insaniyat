@@ -22,3 +22,13 @@
 .hide {
   opacity: 0;
 }
+
+.user-greeting-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--f-fiftys);
+  font-weight: var(--fwt-bold);
+  line-height: var(--sp-eightys);
+}

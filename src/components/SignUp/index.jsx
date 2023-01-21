@@ -33,7 +33,7 @@ const Signup = () => {
     wrongCaptcha: "Invalid Captcha",
   };
   const [errorMessage, setErrorMessage] = useState("-");
-  const isValidationSuccess = errorMessage === "-" ? true : false;
+  let [isValidationSuccess, setIsValidationSuccess] = useState(false);
 
   const captchaStringRef = useRef(null);
   const canvasRef = useRef(null);
@@ -60,40 +60,50 @@ const Signup = () => {
     } else {
       setErrorMessage(errorMessages.incompleteForm);
     }
+    setIsValidationSuccess(errorMessage === "-" ? true : false);
   };
 
   return (
-    <form
-      onSubmit={(e) => validateSignup(e, inputValues)}
-      className="signup-container"
-    >
-      <h3 className="signup-heading">Signup</h3>
-      {inputFields.map((inputField) => {
-        const { inputName, inputPlaceholder, inputType } = inputField;
-        return (
-          <TextBox
-            key={inputName}
-            inputType={inputType}
-            inputName={inputName}
-            inputPlaceholder={inputPlaceholder}
-            inputValue={inputValues[inputName]}
+    <>
+      {isValidationSuccess ? (
+        <div className="user-greeting-wrapper">
+          <p>Hello {inputValues.userName} 👋</p>
+          <p>Welcome to Insaniyat!</p>
+        </div>
+      ) : (
+        <form
+          onSubmit={(e) => validateSignup(e, inputValues)}
+          className="signup-container"
+        >
+          <h3 className="signup-heading">Signup</h3>
+          {inputFields.map((inputField) => {
+            const { inputName, inputPlaceholder, inputType } = inputField;
+            return (
+              <TextBox
+                key={inputName}
+                inputType={inputType}
+                inputName={inputName}
+                inputPlaceholder={inputPlaceholder}
+                inputValue={inputValues[inputName]}
+                setInputValues={setInputValues}
+              />
+            );
+          })}
+          <CaptchaValidator
+            inputValue={inputValues.captcha}
             setInputValues={setInputValues}
+            canvasRef={canvasRef}
+            captchaStringRef={captchaStringRef}
           />
-        );
-      })}
-      <CaptchaValidator
-        inputValue={inputValues.captcha}
-        setInputValues={setInputValues}
-        canvasRef={canvasRef}
-        captchaStringRef={captchaStringRef}
-      />
-      <p className={`signup-msg-error ${isValidationSuccess && "hide"}`}>
-        {errorMessage}
-      </p>
-      <button type="submit" className="btn btn-primary">
-        Signup
-      </button>
-    </form>
+          <p className={`signup-msg-error ${errorMessage === "-" && "hide"}`}>
+            {errorMessage}
+          </p>
+          <button type="submit" className="btn btn-primary">
+            Signup
+          </button>
+        </form>
+      )}
+    </>
   );
 };
 
