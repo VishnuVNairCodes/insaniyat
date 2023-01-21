@@ -25,6 +25,7 @@ function drawText(context, text, x, y) {
 const drawCaptcha = (canvasRef) => {
   const canvas = canvasRef.current;
   const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = "22px Arial";
   ctx.fillStyle = "black";
   const x = 100;
