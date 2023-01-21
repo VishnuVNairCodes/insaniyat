@@ -57,11 +57,12 @@ const Signup = () => {
         setInputValues((prev) => ({ ...prev, captcha: "" }));
         captchaStringRef.current = getCaptchaString();
         drawCaptcha(canvasRef, captchaStringRef.current);
+      } else {
+        setIsValidationSuccess(true);
       }
     } else {
       setErrorMessage(errorMessages.incompleteForm);
     }
-    setIsValidationSuccess(errorMessage === "-" ? true : false);
   };
 
   return (
