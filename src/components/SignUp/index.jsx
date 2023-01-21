@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+import { useTheme } from "../../contexts/theme-context";
 import { drawCaptcha, getCaptchaString } from "../../utils";
 import { CaptchaValidator } from "../CaptchaValidator";
 import { TextBox } from "../TextBox";
 import "./Signup.css";
 
 const Signup = () => {
+  const { theme } = useTheme();
   const inputFields = [
     { inputName: "userName", inputPlaceholder: "Name", inputType: "text" },
     { inputName: "email", inputPlaceholder: "Email", inputType: "email" },
@@ -75,7 +77,7 @@ const Signup = () => {
       ) : (
         <form
           onSubmit={(e) => validateSignup(e, inputValues)}
-          className="signup-container"
+          className={`signup-container ${theme}`}
         >
           <h3 className="signup-heading">Signup</h3>
           {inputFields.map((inputField) => {
