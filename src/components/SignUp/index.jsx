@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { CaptchaValidator } from "../CaptchaValidator";
 import { TextBox } from "../TextBox";
 import "./Signup.css";
 
 const Signup = () => {
   const inputFields = [
-    { inputName: "name", inputPlaceholder: "Name", inputType: "text" },
+    { inputName: "userName", inputPlaceholder: "Name", inputType: "text" },
     { inputName: "email", inputPlaceholder: "Email", inputType: "email" },
     {
       inputName: "password",
@@ -12,11 +13,18 @@ const Signup = () => {
       inputType: "password",
     },
     {
-      inputName: "confirm-password",
+      inputName: "confirmPassword",
       inputPlaceholder: "Confirm Password",
       inputType: "password",
     },
   ];
+  const [inputValues, setInputValues] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    captcha: "",
+  });
   return (
     <article className="signup-container">
       <h3 className="signup-heading">Signup</h3>
@@ -28,11 +36,18 @@ const Signup = () => {
             inputType={inputType}
             inputName={inputName}
             inputPlaceholder={inputPlaceholder}
+            inputValue={inputValues[inputName]}
+            setInputValues={setInputValues}
           />
         );
       })}
-      <CaptchaValidator />
-      <button className="btn btn-primary">Signup</button>
+      <CaptchaValidator
+        inputValue={inputValues.captcha}
+        setInputValues={setInputValues}
+      />
+      <button type="submit" className="btn btn-primary">
+        Signup
+      </button>
     </article>
   );
 };
